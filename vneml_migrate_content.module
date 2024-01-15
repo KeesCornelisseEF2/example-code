@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains vneml_migrate_content.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function vneml_migrate_content_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the vneml_migrate_content module.
+    case 'help.page.vneml_migrate_content':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Import data from previous website') . '</p>';
+      return $output;
+
+    default:
+  }
+}

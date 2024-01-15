@@ -1,0 +1,5 @@
+services:
+  vneml_migrate_content.commands:
+    class: \Drupal\vneml_migrate_content\Commands\VnemlMigrateContentCommands
+    tags:
+      - { name: drush.command }

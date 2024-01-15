@@ -1,0 +1,109 @@
+services:
+  vneml_migrate_content.data_formatter:
+    class: Drupal\vneml_migrate_content\DataFormatter
+
+  vneml_migrate_content.event_importer:
+    class: Drupal\vneml_migrate_content\Importers\NodeImporter
+    arguments: [ 'evenement', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.location_importer:
+    class: Drupal\vneml_migrate_content\Importers\NodeImporter
+    arguments: [ 'locatie', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.location_terms_importer:
+    class: Drupal\vneml_migrate_content\Importers\NodeTermsImporter
+    arguments: [ 'locatie', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.page_importer:
+    class: Drupal\vneml_migrate_content\Importers\PageImporter
+    arguments: [ 'page', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.pagepdf_importer:
+    class: Drupal\vneml_migrate_content\Importers\PagePdfImporter
+    arguments: [ 'page', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.photo_block_importer:
+    class: Drupal\vneml_migrate_content\Importers\PhotoBlockImporter
+    arguments: [ 'photo_block', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.intro_block_importer:
+    class: Drupal\vneml_migrate_content\Importers\IntroBlockImporter
+    arguments: [ 'page', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.overview_page_importer:
+    class: Drupal\vneml_migrate_content\Importers\PageImporter
+    arguments: [ 'overview_page', '@vneml_migrate_content.data_formatter' ]
+
+  vneml_migrate_content.user_importer:
+    class: Drupal\vneml_migrate_content\Importers\UserImporter
+
+  vneml_migrate_content.import_events:
+    class: Drupal\vneml_migrate_content\Command\ImportEventsCommand
+    arguments: [ '@vneml_migrate_content.event_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.import_locations:
+    class: Drupal\vneml_migrate_content\Command\ImportLocationsCommand
+    arguments: [ '@vneml_migrate_content.location_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.import_users:
+    class: Drupal\vneml_migrate_content\Command\ImportUsersCommand
+    arguments: [ '@vneml_migrate_content.user_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.import_pages:
+    class: Drupal\vneml_migrate_content\Command\ImportPagesCommand
+    arguments: [ '@vneml_migrate_content.page_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.import_photo_block:
+    class: Drupal\vneml_migrate_content\Command\ImportPhotoBlockCommand
+    arguments: [ '@vneml_migrate_content.photo_block_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.import_overview_pages:
+    class: Drupal\vneml_migrate_content\Command\ImportOverviewPagesCommand
+    arguments: [ '@vneml_migrate_content.overview_page_importer' ]
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_events:
+    class: Drupal\vneml_migrate_content\Command\DeleteEventsCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_locations:
+    class: Drupal\vneml_migrate_content\Command\DeleteLocationsCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_users:
+    class: Drupal\vneml_migrate_content\Command\DeleteUsersCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_cats:
+    class: Drupal\vneml_migrate_content\Command\DeleteCategoryCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_props:
+    class: Drupal\vneml_migrate_content\Command\DeletePropertiesCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_pages:
+    class: Drupal\vneml_migrate_content\Command\DeletePagesCommand
+    tags:
+      - { name: drupal.command }
+
+  vneml_migrate_content.delete_overview_pages:
+    class: Drupal\vneml_migrate_content\Command\DeleteOverviewPagesCommand
+    tags:
+      - { name: drupal.command }

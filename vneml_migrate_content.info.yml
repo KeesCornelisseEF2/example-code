@@ -1,0 +1,6 @@
+name: 'VNEML migrate content'
+type: module
+description: 'Import data from previous website'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'EF2'
